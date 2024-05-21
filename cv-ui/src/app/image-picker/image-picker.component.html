@@ -1,0 +1,7 @@
+<div>
+    <h1 class="title">Image Coloration Service</h1>
+    <button (click)="onChooseImage()">Choose Image</button>
+    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Chosen Image" width="200" />
+  </div>
+  
