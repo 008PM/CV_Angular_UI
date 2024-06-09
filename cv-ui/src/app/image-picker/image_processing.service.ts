@@ -18,10 +18,10 @@ export class ImageService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const body = { image: base64Image };
-    return this.http.post<{ processedImage: string }>(this.apiUrl, body, { headers })
+    const body = { greyscale_image: base64Image };
+    return this.http.post<{ processed_image: string }>(this.apiUrl, body, { headers })
       .pipe(
-        map(response => response.processedImage)
+        map(response => response.processed_image)
       );
   }
 }
