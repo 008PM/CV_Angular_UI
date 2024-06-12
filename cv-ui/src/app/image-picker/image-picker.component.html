@@ -1,8 +1,9 @@
 <div>
     <h1 class="title">Image Coloration Service</h1>
-    <button (click)="onChoosingImage()">Choose Image</button>
+    <button mat-raised-button (click)="onChoosingImage()">Choose Image</button>
+    <button mat-raised-button (click)="onProcessImage()">Process Image</button>
     <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
-    <img *ngIf="imageInBase64" [src]="imageInBase64" alt="Chosen Image" width="200" />
-    <img *ngIf="processedColorImageBase64" [src]="processedColorImageBase64" alt="processed Image" width="200" />
+    <img *ngIf="imageInBase64" [src]="imageInBase64" alt="Chosen Image" width="300" />
+    <img *ngIf="imageInBase64" [src]="imageInBase64" alt="Chosen Image" width="300" />
+    <!-- <img *ngIf="processedColorImageBase64" [src]="processedColorImageBase64" alt="processed Image" width="200" /> -->
   </div>
-<button (click)="onProcessImage()">Process Image</button>

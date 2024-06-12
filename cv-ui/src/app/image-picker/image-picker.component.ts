@@ -2,12 +2,13 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ImageService } from './image_processing.service';
-import { error } from 'console';
-
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 @Component({
   selector: 'app-image-picker',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule,MatButtonModule, MatDividerModule, MatIconModule],
   templateUrl: './image-picker.component.html',
   styleUrls: ['./image-picker.component.css']
 })
