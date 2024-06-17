@@ -1,27 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
-  
+  providedIn: 'root'
 })
-export class ImageService {
+export class TransformerService {
+
+  private apiUrl = 'http://127.0.0.1:8081/transformer/upload';
+
   constructor(private http: HttpClient) { }
-  private apiUrl = 'YOUR_API_ENDPOINT';  // Replace with your API endpoint
 
-  //-----http client is trouble maker next to be fixed,its fixed idea lies in adding the things in 
-
-
-  processImage(base64Image: string): Observable<string> {
+  uploadGreyscaleImage(greyscaleImage: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     });
-    const body = { greyscale_image: base64Image };
-    return this.http.post<{ processed_image: string }>(this.apiUrl, body, { headers })
-      .pipe(
-        map(response => response.processed_image)
-      );
+    let correctedGreyScaleImage = this.removeBase64Prefix(greyscaleImage)
+    const body = {
+      greyscale_image: correctedGreyScaleImage
+    };
+    console.log("below is corrected greayscale image")
+    console.log(body)
+    return this.http.post<any>(this.apiUrl, body, { headers });
+    //return this.http.post(this.apiUrl, body);
+  }
+
+  public removeBase64Prefix(input: string): string {
+    const prefixes = [
+      "data:application/octet-stream;base64,",
+      "data:image/jpeg;base64,"
+    ];
+  
+    for (const prefix of prefixes) {
+      if (input.startsWith(prefix)) {
+        return input.replace(prefix, "");
+      }
+    }
+    
+    return input;
   }
 }

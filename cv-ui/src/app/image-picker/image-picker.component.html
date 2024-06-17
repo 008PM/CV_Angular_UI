@@ -14,7 +14,7 @@
     </div>
     <div class="cl2">
       <img *ngIf="imageInBase64" [src]="imageInBase64" alt="Chosen Image"  />
-      <img *ngIf="imageInBase64" [src]="imageInBase64" alt="Chosen Image"  />
+      <img *ngIf="processedColorImageBase64" [src]="processedColorImageBase64" alt="Processed Image"  />
       <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
     </div>
     <div class="cl3">
